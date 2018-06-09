@@ -1,6 +1,9 @@
 
 # Created by https://www.gitignore.io/api/git,node,macos,windows,visualstudiocode
 
+### Discord Token ###
+token.js
+
 ### Git ###
 *.orig
 

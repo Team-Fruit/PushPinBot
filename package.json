@@ -1,0 +1,18 @@
+{
+  "name": "push-pin-bot",
+  "version": "0.1.0",
+  "description": "プッシュピン📌・プッシュピン📍・激栗目🌰👁",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "TeamFruit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Team-Fruit/PushPinBot.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
