@@ -43,24 +43,28 @@ function PinMessage(guild, message, user) {
         if (channel.name.toLowerCase() !== Resource.target_channel)
             continue;
         if (!channel.send) {
-            console.error(`Found channel "${channel.name}", but it's not a text one!`);
+            console.error(`#${channel.name} is not text channel`);
             continue;
         }
         found = true;
         break;
     }
     if (!found) {
-            console.error(`Can't pin message; can't find channel #${Resource.target_channel}`);
+            console.error(`Not found #${Resource.target_channel}`);
             return;
     }
     let pinMessage = {
         embed: {
-            title: "Pinned message!",
+            author: {
+                name: user.username,
+                icon_url: user.avatarURL
+            },
             color: 3447003,
             fields: [{
-                name: `${user.tag} pinned a message by ${message.author.username}`,
-                value: `${message.createdAt.toLocaleString()} : ${message.content}`
-            }]
+                name: `Push Pin!!`,
+                value: `${message.channel} post by ${message.author} \n ${message.content}`
+            }],
+            timestamp: new Date()
         }
     };
     if (message.author.username !== Resource.bot_name) {
