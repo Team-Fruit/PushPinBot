@@ -26,4 +26,6 @@ module.exports.emoji = [
     "279881829870206976"/*ororo*/,
     "437191246956724224"/*iga*/,
     "251836953392054273"/*cron*/];
-module.exports.server_id = "239487519488475136";
+
+module.exports.target_channel = "𝙨𝙪pai𝙨𝙝𝙞";
+module.exports.bot_name = "push pin radar";
