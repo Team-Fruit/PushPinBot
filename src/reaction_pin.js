@@ -8,7 +8,6 @@ function Ready() {
     console.log(`Logged in as ${client.user.tag}: caching all recent messages...`);
     let guild;
     let channel;
-
     for ( guild of client.guilds.values() )
         for ( channel of guild.channels.values() ) {
             const channelName = channel.name;
@@ -26,12 +25,10 @@ function Reaction(rea, user) {
         const message = rea.message;
         const channel = message.channel;
         const guild   = message.guild;
-
         if ( channel.name === Resource.target_channel.channel)
             return;
         if ( rea.emoji.name !== "📌")
             return;
-
         PinMessage(guild, message, user);
     }
 }
@@ -39,6 +36,8 @@ function Reaction(rea, user) {
 function PinMessage(guild, message, user) {
     let channel;
     let found;
+    let pic;
+
     for ( channel of guild.channels.values() ) {
         if (channel.name.toLowerCase() !== Resource.target_channel)
             continue;
@@ -53,20 +52,15 @@ function PinMessage(guild, message, user) {
             console.error(`Not found #${Resource.target_channel}`);
             return;
     }
-    let pinMessage = {
-        embed: {
-            author: {
-                name: user.username,
-                icon_url: user.avatarURL
-            },
-            color: 3447003,
-            fields: [{
-                name: `Push Pin!!`,
-                value: `${message.channel} post by ${message.author} \n ${message.content}`
-            }],
-            timestamp: new Date()
-        }
-    };
+    if (message.attachments.array().length === 1) {
+        pic = message.attachments.array()[0].url
+    }
+    let pinMessage = new Discord.RichEmbed()
+        .setAuthor(user.username,user.avatarURL)
+        .setColor(3447003)
+        .addField("PushPin!!",`${message.channel} post by ${message.author} \n ${message.content}`)
+        .setImage(pic)
+        .setTimestamp(new Date());
     if (message.author.username !== Resource.bot_name) {
         channel.send(pinMessage)
             .then(_ => console.log(`Pinned ${user.tag} message: ${message.content}`))
