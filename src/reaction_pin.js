@@ -38,6 +38,10 @@ function PinMessage(guild, message, user) {
     let found;
     let pic;
 
+    const guild_id = guild.id;
+    const channel_id = message.channel.id;
+    const message_link = `https://discordapp.com/channels/${guild_id}/${channel_id}/${message.id}`;
+
     for ( channel of guild.channels.values() ) {
         if (channel.name.toLowerCase() !== Resource.target_channel)
             continue;
@@ -58,12 +62,12 @@ function PinMessage(guild, message, user) {
     let pinMessage = new Discord.RichEmbed()
         .setAuthor(user.username,user.avatarURL)
         .setColor(3447003)
-        .addField("PushPin!!",`${message.channel} post by ${message.author} \n ${message.content}`)
+        .addField("PushPin!!",`${message.channel} post by ${message.author} \n ${message.content} ${message_link}`)
         .setImage(pic)
         .setTimestamp(new Date());
     if (message.author.username !== Resource.bot_name) {
         channel.send(pinMessage)
-            .then(_ => console.log(`Pinned ${user.tag} message: ${message.content}`))
+            .then(nu => console.log(`Pinned ${user.tag} message: ${message.content}`))
             .catch(console.error);
     }
 }
