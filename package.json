@@ -1,10 +1,10 @@
 {
-  "name": "push-pin-bot",
-  "version": "0.1.0",
+  "name": "pushpin-bot",
+  "version": "1.0.0",
   "description": "プッシュピン📌・プッシュピン📍・激栗目🌰👁",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node src/main.js"
   },
   "author": "TeamFruit",
   "repository": {
@@ -13,6 +13,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.3.2"
+    "discord.js": "^12.2.0"
   }
 }
