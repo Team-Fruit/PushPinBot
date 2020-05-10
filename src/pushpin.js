@@ -21,9 +21,11 @@ module.exports = async (reaction, user) => {
         .setColor(0xCB3B48)
         .setTitle('📌**Push Pin!**📌')
         .setDescription(`[post](${message.url}) in ${message.channel} by ${message.author}`)
-        .addField('──────────────', `${message.content}`, false)
-        .setImage(image)
         .setTimestamp(message.editedTimestamp ?? message.createdTimestamp);
+    if (message.content)
+        pinMessage.addField('──────────────', `${message.content}`, false);
+    if (image)
+        pinMessage.setImage(image);
     await channel.send(pinMessage).catch(console.error);
     console.log(`Pinned ${user.tag} message: ${message.url}`);
 };
